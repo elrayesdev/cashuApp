@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'customer_id' => $customer->id,
             ]);
-            
+
         DB::commit();
 
         event(new Registered($user));
