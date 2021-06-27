@@ -20,7 +20,8 @@ class CreateRoleTable extends Migration
 
             // structure
             $table->id();
-            $table->string('name');
+            $table->string('title');
+            $table->string('code');
             $table->timestamps();
 
             // foreign keys
