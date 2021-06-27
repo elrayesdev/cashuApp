@@ -27,32 +27,25 @@ Route::get('/dashboard', function () {
 
 // users
     // show all users
-    Route::get('/users',[UserController::class, 'index'])->middleware('auth');
+    Route::get('/users',[UserController::class, 'index'])->middleware(['auth', 'isSuper']);
 
     // create user
-    Route::get('/users/add',[UserController::class, 'create'])->middleware('auth');   // create view
-    Route::post('/users',[UserController::class, 'store'])->middleware('auth');      // create submit
+    Route::get('/users/add',[UserController::class, 'create'])->middleware('auth', 'isSuper');   // create view
+    Route::post('/users',[UserController::class, 'store'])->middleware('auth', 'isSuper');      // create submit
 
 // sales
     // show all sales
-    Route::get('/sales',[SalesController::class, 'index'])->middleware('auth');
+    Route::get('/sales',[SalesController::class, 'index'])->middleware('auth', 'isSales');
 
 //config
     // show all configs
-    Route::get('/configs',[ConfigController::class, 'index'])->middleware('auth');
+    Route::get('/configs',[ConfigController::class, 'index'])->middleware('auth', 'isBack');
 
     // show single config
-    Route::get('/configs/{id}',[ConfigController::class, 'show'])->middleware('auth');
+    Route::get('/configs/{id}',[ConfigController::class, 'show'])->middleware('auth', 'isBack');
 
     // edit config
-    Route::get('/configs/{id}/edit',[ConfigController::class, 'edit'])->middleware('auth');  // edit view
-    Route::patch('/configs/{id}',[ConfigController::class, 'update'])->middleware('auth');     // submit edit
-
-
-
-
-
-
-
+    Route::get('/configs/{id}/edit',[ConfigController::class, 'edit'])->middleware('auth', 'isBack');  // edit view
+    Route::patch('/configs/{id}',[ConfigController::class, 'update'])->middleware('auth', 'isBack');     // submit edit
 
 require __DIR__.'/auth.php';

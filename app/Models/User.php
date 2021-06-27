@@ -45,4 +45,46 @@ class User extends Authenticatable implements MustVerifyEmail
     public  function configs(){
         return $this->hasMany(Config::class);
     }
+
+    public function is($roleCode)
+    {
+        if ($this->isSuper()){
+            return true;
+        }
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->code == $roleCode)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isSuper(){
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->code == 'SUPER')
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isAdmin(){
+        return $this->is('ADMIN');
+    }
+
+    public function isBack(){
+        if ($this->isAdmin())
+            return true;
+        return $this->is('BACK');
+    }
+
+    public function isSales(){
+        if ($this->isAdmin())
+            return true;
+        return $this->is('SALES');
+    }
 }
