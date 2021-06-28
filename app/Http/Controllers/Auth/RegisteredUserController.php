@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Config;
 use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
@@ -60,6 +61,13 @@ class RegisteredUserController extends Controller
             // this is the customer account creator .. so he is the super admin
             $role = Role::where('code','=','SUPER')->first();
             $user->roles()->save($role);
+
+        $config = Config::create(
+            [
+                'user_id'=>$user->id,
+                'target'=>0,
+            ]
+        );
 
         DB::commit();
 
