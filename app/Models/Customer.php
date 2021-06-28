@@ -24,4 +24,8 @@ class Customer extends Model
         return $this->hasManyThrough(Sales::class, User::class);
     }
 
+    public function configs(){
+        return $this->hasManyThrough(Config::class, User::class);
+    }
+
 }

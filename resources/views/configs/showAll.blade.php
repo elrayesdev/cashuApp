@@ -36,11 +36,11 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Sales</h3>
+                            <h3 class="card-title">Back Office / Configs</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            @if(count($sales) <=0)
+                            @if(count($configs) <=0)
                                 No Data Found
                             @else
                                 <table class="table table-bordered">
@@ -52,11 +52,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach( $sales as $sale)
+                                    @foreach( $configs as $config)
                                         <tr>
-                                            <td>{{ $sale->id }}</td>
-                                            <td>{{ $sale->user->name }}</td>
-                                            <td>{{ $sale->payment }}</td>
+                                            <td>{{ $config->id }}</td>
+                                            <td>{{ $config->user->name }}</td>
+                                            <td>{{ $config->target }}</td>
                                         </tr>
                                     @endforeach
 
@@ -66,7 +66,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
-                            {!!  $sales->render() !!}
+                            {!!  $configs->render() !!}
                         </div>
                     </div>
 
