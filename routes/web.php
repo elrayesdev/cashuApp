@@ -48,12 +48,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // show all configs
     Route::get('/configs',[ConfigController::class, 'index'])->middleware('isBack');
 
-    // show single config
-    Route::get('/configs/{id}',[ConfigController::class, 'show'])->middleware('isBack');
-
     // edit config
     Route::get('/configs/{id}/edit',[ConfigController::class, 'edit'])->middleware('isBack');  // edit view
-    Route::patch('/configs/{id}',[ConfigController::class, 'update'])->middleware('isBack');     // submit edit
+    Route::put('/configs/{id}',[ConfigController::class, 'update'])->middleware('isBack')->name('updateTarget');     // submit edit
 
 });
 

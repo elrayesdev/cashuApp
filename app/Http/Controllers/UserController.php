@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Config;
 use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
@@ -52,6 +53,13 @@ class UserController extends Controller
             $role = Role::findOrFail($role);
             $user->roles()->save($role);
         }
+
+        $config = Config::create(
+            [
+                'user_id'=>$user->id,
+                'target'=>0,
+            ]
+        );
 
 
         DB::commit();

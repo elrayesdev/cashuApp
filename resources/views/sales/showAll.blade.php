@@ -31,7 +31,7 @@
 
 
 
-                    <div class="timeline-footer">
+                    <div>
                         <a href="/sales/add" class="btn btn-default">Create New Sales</a>
                     </div>
 

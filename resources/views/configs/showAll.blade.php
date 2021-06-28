@@ -49,6 +49,7 @@
                                         <th style="width: 10px">#</th>
                                         <th>Name</th>
                                         <th>Payment</th>
+                                        <th>Edit</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -57,6 +58,9 @@
                                             <td>{{ $config->id }}</td>
                                             <td>{{ $config->user->name }}</td>
                                             <td>{{ $config->target }}</td>
+                                            <td>
+                                                <a href="/configs/{{ $config->id }}/edit/" class="btn btn-default">edit</a>
+                                            </td>
                                         </tr>
                                     @endforeach
 
