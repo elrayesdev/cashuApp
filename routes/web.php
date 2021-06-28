@@ -26,15 +26,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->middleware(['auth','verified'])->name('dashboard');
+    })->name('dashboard');
 
 // users
     // show all users
-    Route::get('/users',[UserController::class, 'index'])->middleware(['isSuper']);
+    Route::get('/users',[UserController::class, 'index'])->middleware(['isSuper'])->name('users');
 
     // create user
     Route::get('/users/add',[UserController::class, 'create'])->middleware('isSuper');   // create view
-    Route::post('/users',[UserController::class, 'store'])->middleware('isSuper');      // create submit
+    Route::post('/users',[UserController::class, 'store'])->middleware('isSuper')->name('createUser');      // create submit
 
 // sales
     // show all sales
