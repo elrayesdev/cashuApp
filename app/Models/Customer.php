@@ -20,4 +20,8 @@ class Customer extends Model
         return $this->hasMany(User::class, 'customer_id');
     }
 
+    public function sales(){
+        return $this->hasManyThrough(Sales::class, User::class);
+    }
+
 }

@@ -9,7 +9,7 @@ class SalesController extends Controller
 {
     //
     public function index(){
-        $sales = Auth::user()->sales;
-        return $sales;
+        $sales = Auth::user()->customer->sales()->paginate(5);
+        return view('sales.showAll',compact(['sales']));
     }
 }
