@@ -39,6 +39,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // sales
     // show all sales
     Route::get('/sales',[SalesController::class, 'index'])->middleware('isSales');
+    // create sales
+    Route::get('/sales/add',[SalesController::class, 'create'])->middleware('isSales');   // create view
+    Route::post('/sales',[SalesController::class, 'store'])->middleware('isSales')->name('createSales');      // create submit
+
 
 //config
     // show all configs

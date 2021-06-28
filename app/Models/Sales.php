@@ -13,7 +13,7 @@ class Sales extends Model
 
     protected $fillable = [
         'payment',
-        'sales_id',
+        'user_id',
     ];
 
     public function user(){
