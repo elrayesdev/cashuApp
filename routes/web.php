@@ -21,31 +21,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth','verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth','verified'])->name('dashboard');
 
 // users
     // show all users
-    Route::get('/users',[UserController::class, 'index'])->middleware(['auth', 'isSuper']);
+    Route::get('/users',[UserController::class, 'index'])->middleware(['isSuper']);
 
     // create user
-    Route::get('/users/add',[UserController::class, 'create'])->middleware('auth', 'isSuper');   // create view
-    Route::post('/users',[UserController::class, 'store'])->middleware('auth', 'isSuper');      // create submit
+    Route::get('/users/add',[UserController::class, 'create'])->middleware('isSuper');   // create view
+    Route::post('/users',[UserController::class, 'store'])->middleware('isSuper');      // create submit
 
 // sales
     // show all sales
-    Route::get('/sales',[SalesController::class, 'index'])->middleware('auth', 'isSales');
+    Route::get('/sales',[SalesController::class, 'index'])->middleware('isSales');
 
 //config
     // show all configs
-    Route::get('/configs',[ConfigController::class, 'index'])->middleware('auth', 'isBack');
+    Route::get('/configs',[ConfigController::class, 'index'])->middleware('isBack');
 
     // show single config
-    Route::get('/configs/{id}',[ConfigController::class, 'show'])->middleware('auth', 'isBack');
+    Route::get('/configs/{id}',[ConfigController::class, 'show'])->middleware('isBack');
 
     // edit config
-    Route::get('/configs/{id}/edit',[ConfigController::class, 'edit'])->middleware('auth', 'isBack');  // edit view
-    Route::patch('/configs/{id}',[ConfigController::class, 'update'])->middleware('auth', 'isBack');     // submit edit
+    Route::get('/configs/{id}/edit',[ConfigController::class, 'edit'])->middleware('isBack');  // edit view
+    Route::patch('/configs/{id}',[ConfigController::class, 'update'])->middleware('isBack');     // submit edit
+
+});
 
 require __DIR__.'/auth.php';
