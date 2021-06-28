@@ -10,8 +10,8 @@ class UserController extends Controller
 {
     //
     public function index(){
-        $users = Auth::user()->customer->users;
-        return $users;
+        $users = Auth::user()->customer->users()->paginate(5);
+        return view('users.showAll',compact(['users']));
     }
 
     public function create(){
