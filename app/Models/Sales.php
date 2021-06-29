@@ -9,6 +9,8 @@ class Sales extends Model
 {
     use HasFactory;
 
+    protected $with = ['user'];
+
     protected $table = 'sales';
 
     protected $fillable = [

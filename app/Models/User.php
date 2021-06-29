@@ -11,6 +11,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
+    protected $with = ['roles'];
+
     protected $table = 'user';
 
     protected $fillable = [

@@ -48,9 +48,10 @@ class UserController extends Controller
         ]);
         // this is the customer account creator .. so he is the super admin
 
-        foreach ($request->roles as $role)
+        $roles = Role::whereIn('id',$request->roles)->get();
+
+        foreach ($roles as $role)
         {
-            $role = Role::findOrFail($role);
             $user->roles()->save($role);
         }
 
